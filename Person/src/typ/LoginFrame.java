@@ -1,7 +1,10 @@
 package typ;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.math.BigInteger;
 import java.util.Random;
 import javax.swing.JButton;
@@ -21,9 +24,26 @@ public class LoginFrame implements ActionListener {
 				Client c = new Client();
 				c.lauchFrame();
 				c.setFocusable(true);
+				c.addWindowListener(new WindowAdapter() {
+					public void windowClosing(WindowEvent w) {
+                                c.setVisible(false);
+					}
+				});
 			}
 		}
 		if (evt.getSource() == b2) {
+			Window w=new Window();
+			w.initView();
+			w.setVisible(true);
+//			w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			w.addWindowListener(new WindowAdapter() {
+				@Override
+				public void windowClosing(WindowEvent e) {
+				 w.setVisible(false);
+
+				}
+			});
+
 		}
 		if (evt.getSource() == b3) {
 		}
@@ -73,7 +93,14 @@ public class LoginFrame implements ActionListener {
 		b1.setBounds(150, 60, 99, 23);
 		frame.getContentPane().add(b1);
 
+
+		b2 = new JButton();
+		b2.setText("2048");
+		b2.setBounds(200, 120, 99, 23);
+		frame.getContentPane().add(b2);
+
 		b1.addActionListener(this);
+		b2.addActionListener(this);
 		frame.setVisible(true);
 	}
 }

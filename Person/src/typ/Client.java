@@ -96,14 +96,8 @@ public class Client extends Frame {
 		this.setResizable(false);
 		this.setBackground(new Color(252, 252, 243));
 		this.setVisible(true);
-		this.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent w) {
-				System.exit(0);
-			}
-		});
 		this.addKeyListener(new KeyMonitor());
 		new Thread(new PaintThread()).start();
-		new Audio(0);
 	}
 
 
@@ -129,7 +123,6 @@ public class Client extends Frame {
 		public void keyReleased(KeyEvent k) {
 			person.keyReleased(k);
 		}
-
 		public void keyPressed(KeyEvent k) {
 			person.keyPressed(k);
 		}
